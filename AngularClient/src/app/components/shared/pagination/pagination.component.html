@@ -1,0 +1,22 @@
+<ul class="pagination" *ngIf="pageData!.totalPages > 1">
+    <li class="page-item" [class.disabled]="pageData!.number === 0? true : null">
+        <a class="page-link" (click)="navigateToFirstPage()">
+            First
+        </a>
+    </li>
+    <li class="page-item" [class.disabled]="pageData!.number > 0? null: true">
+        <a class="page-link" (click)="navigateToPreviousPage()">
+            Previous
+        </a>
+    </li>
+    <li class="page-item" [class.disabled]="pageData!.number < pageData!.totalPages - 1? null: true">
+        <a class="page-link" (click)="navigateToNextPage()">
+            Next
+        </a>
+    </li>
+    <li class="page-item" [class.disabled]="pageData!.number === pageData!.totalPages - 1? true: null">
+        <a class="page-link" (click)="navigateToLastPage()">
+            Last
+        </a>
+    </li>
+</ul>

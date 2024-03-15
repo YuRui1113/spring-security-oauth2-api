@@ -1,0 +1,18 @@
+<div class="modal-header">
+    <h4 class="modal-title">{{ title }}</h4>
+    <button type="button" class="btn-close" aria-hidden="true" (click)="activeModal.dismiss('Cross click')"></button>
+</div>
+<div class="modal-body">
+    <p>{{ prompt }}</p>
+    <div class="bg-light">
+        <p><small>{{ info }}</small></p>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="activeModal.close();" autofocus>
+        <fa-icon [icon]="faBackspace" class="me-2"></fa-icon>取消
+    </button>
+    <button type="button" class="btn btn-primary" (click)="confirm();">
+        <fa-icon [icon]="faCheckCircle" class="me-2"></fa-icon>确定
+    </button>
+</div>

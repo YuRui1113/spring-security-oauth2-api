@@ -1,0 +1,72 @@
+/* You can add global styles to this file, and also import other style files */
+
+/* Importing Bootstrap SCSS file. */
+@import 'bootstrap/scss/bootstrap';
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+sup {
+    color: red;
+}
+
+.modal-title-background {
+    background-color: #eeeeee;
+}
+
+.cdk-overlay-container {
+    position: fixed;
+    z-index: 10001;
+}
+
+// Customized snack bar style
+.mat-snack-bar-container {
+    color: white;
+
+    .snack-container-message {
+        display: flex;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+
+        .icon {
+            padding-right: 10px;
+            font-size: x-large;
+        }
+    }
+}
+
+.success {
+    background-color: green;
+    --mdc-snackbar-container-color: green;
+}
+
+.warn {
+    background-color: darkorange;
+    --mdc-snackbar-container-color: darkorange;
+}
+
+.error {
+    background-color: red;
+    --mdc-snackbar-container-color: red;
+}
+
+.list-title {
+    font-weight: bold;
+}
+
+.link-margin {
+    margin-left: 2px;
+    margin-right: 2px;
+}
+
+a {
+    cursor: pointer;
+}

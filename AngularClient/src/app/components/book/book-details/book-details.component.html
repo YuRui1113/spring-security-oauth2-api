@@ -1,0 +1,113 @@
+<div class="modal-header modal-title-background">
+    <h4 class="modal-title">{{title}}</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
+</div>
+<div class="modal-body text-left mx-1">
+    <form [formGroup]="bookForm">
+        <div *ngIf="hasError" class="row mb-1">
+            <span class="alert alert-danger">{{ errorMessage }}</span>
+        </div>
+
+        <div class="row mb-2">
+            <div class="form-group col-12">
+                <label class="form-label">Title<sup>*</sup></label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">
+                            <fa-icon [icon]="faTasks"></fa-icon>
+                        </span>
+                    </div>
+                    <input [ngClass]="{'is-invalid': formHelper.isFieldInvalid('title', bookForm)}"
+                        *ngIf="isEdit; else readOnlyTitle" type="text" class="form-control" formControlName="title"
+                        placeholder="Book Title" />
+                    <ng-template #readOnlyTitle>
+                        <div>{{ book?.title }}</div>
+                    </ng-template>
+                    <div class="invalid-feedback" *ngIf="formHelper.isFieldInvalid('title', bookForm)">
+                        <div *ngIf="bookForm.get('title')!.errors!['required']">
+                            {{ formHelper.MANDATORY_MESSAGE | format: 'title' }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-2">
+            <div class="form-group col-8">
+                <label class="form-label">Author<sup>*</sup></label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">
+                            <fa-icon [icon]="faUser"></fa-icon>
+                        </span>
+                    </div>
+                    <input [ngClass]="{'is-invalid': formHelper.isFieldInvalid('author', bookForm)}"
+                        *ngIf="isEdit; else readOnlyAuthor" type="text" class="form-control" formControlName="author"
+                        placeholder="Book Author" />
+                    <ng-template #readOnlyAuthor>
+                        <div>{{ book?.author }}</div>
+                    </ng-template>
+                    <div class="invalid-feedback" *ngIf="formHelper.isFieldInvalid('author', bookForm)">
+                        <div *ngIf="bookForm.get('author')!.errors!['required']">
+                            {{ formHelper.MANDATORY_MESSAGE | format: 'author' }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-2">
+            <div class="form-group col-8">
+                <label class="form-label">Publication Year<sup>*</sup></label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">
+                            <fa-icon [icon]="faClock"></fa-icon>
+                        </span>
+                    </div>
+                    <input [ngClass]="{'is-invalid': formHelper.isFieldInvalid('publicationYear', bookForm)}"
+                        *ngIf="isEdit; else readOnlyPublicationYear" type="text" class="form-control"
+                        formControlName="publicationYear" placeholder="Book Publication Year" />
+                    <ng-template #readOnlyPublicationYear>
+                        <div>{{ book?.publicationYear }}</div>
+                    </ng-template>
+                    <div class="invalid-feedback" *ngIf="formHelper.isFieldInvalid('publicationYear', bookForm)">
+                        <div *ngIf="bookForm.get('publicationYear')!.errors!['required']">
+                            {{ formHelper.MANDATORY_MESSAGE | format: 'publicationYear' }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-2">
+            <div class="form-group col-8">
+                <label class="form-label">ISBN<sup>*</sup></label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">
+                            <fa-icon [icon]="faBook"></fa-icon>
+                        </span>
+                    </div>
+                    <input [ngClass]="{'is-invalid': formHelper.isFieldInvalid('isbn', bookForm)}"
+                        *ngIf="isEdit; else readOnlyISBN" type="text" class="form-control" formControlName="isbn"
+                        placeholder="Book ISBN" />
+                    <ng-template #readOnlyISBN>
+                        <div>{{ book?.isbn }}</div>
+                    </ng-template>
+                    <div class="invalid-feedback" *ngIf="formHelper.isFieldInvalid('isbn', bookForm)">
+                        <div *ngIf="bookForm.get('isbn')!.errors!['required']">
+                            {{ formHelper.MANDATORY_MESSAGE | format: 'isbn' }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="row mb-2">
+    <app-details-page-buttons [isEdit]="isEdit" [needCancel]="true" (onCancel)="closeModal()" (onSave)="save()"
+        (onClose)="closeModal()">
+    </app-details-page-buttons>
+</div>

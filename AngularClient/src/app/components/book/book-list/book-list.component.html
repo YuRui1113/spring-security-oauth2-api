@@ -1,0 +1,61 @@
+<div class="row mb-2">
+    <div class="d-flex justify-content-between">
+        <div class="list-title">
+            Book List
+        </div>
+        <div>
+            <a class="btn btn-sm btn-primary rounded" id="btnAdd" (click)="addNewBook()">
+                <fa-icon [icon]="faPlusCircle" class="me-1"></fa-icon>Create New Book
+            </a>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="table-responsive">
+        <table class="table table-hover table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th class="text-center">Index</th>
+                    <th class="text-center">Title</th>
+                    <th class="text-center">Author</th>
+                    <th class="text-center">Publication Year</th>
+                    <th class="text-center">ISBN</th>
+                    <th class="text-center"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let book of pageData.content; let indexOfBook = index;">
+                    <td class="text-center">{{ pageData!.number * pageData!.size + indexOfBook + 1 }}</td>
+                    <td class="text-center">{{ book.title }}</td>
+                    <td class="text-center">{{ book.author }}</td>
+                    <td class="text-center">{{ book.publicationYear }}</td>
+                    <td class="text-center">{{ book.isbn }}</td>
+                    <td class="text-center">
+                        <div class="btn-group text-justify">
+                            <div class="text-justify ms-1 me-1">
+                                <a data-toggle="tooltip" data-placement="top" title="Edit Book"
+                                    (click)="editBook(book)">
+                                    <fa-icon [icon]="faEdit" class="text-primary"></fa-icon>
+                                </a>
+                            </div>
+                            <div class="text-justify me-1">
+                                <a data-toggle="tooltip" data-placement="top" title="Delete Book"
+                                    (click)="deleteBook(book)">
+                                    <fa-icon [icon]="faTrashAlt" class="text-primary"></fa-icon>
+                                </a>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                <tr *ngIf="pageData.empty">
+                    <td colspan="6" class="jumbotron text-center">
+                        No data
+                    </td>
+                </tr>
+        </table>
+    </div>
+</div>
+
+<div class="row mb-2">
+    <app-pagination [pageData]="pageData" (onPage)="fetchPageData($event)"></app-pagination>
+</div>
